@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Node{{.NodeNumber}}</title>
+</head>
+
+<body>
+  <!-- <div style="float: right;">
+    <h1 style="margin-top: 30px; margin-right: 220px;">Active Node: {{.NodeCount}}</h1>
+  </div> -->
+  <div class="move">
+    <div>
+      <h1 style="margin-top: 10px;">분산 웹 데이터 저장소</h1>
+    </div>
+
+    <div>
+      <h3 style="margin-top: 5px;">Total Node Usage: {{.NodeSize}} KB</h3>
+      <h3>Node{{.NodeNumber}} Usage: {{.FileSize}} KB</h3>
+    </div>
+
+    <div class="list">
+      <h2 style="margin-left: 10px; margin-top: 10px;">File List</h2>
+      {{range .FileData}}
+      <p>{{.Filename}}</p>
+      {{end}}
+    </div>
+
+    <form action="/test" method="GET" accept-charset="utf-8">
+      <p><input type="submit" value="Test" /></p>
+    </form>
+
+    <div class="upload">
+      <h2 style="margin-top: 0px;">Upload Node{{.NodeNumber}}</h2>
+      <form action="/upload/one" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        <p><input type="file" id="file" name="file" value="File Selection" /></p>
+        <p><input type="submit" name="upload_one" value="Upload" /></p>
+      </form>
+    </div>
+
+    <div class="upload">
+      <h2 style="margin-top: 0px;">Upload Full Node</h2>
+      <form action="/upload/all" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+        <p><input type="file" id="file" name="file" value="File Selection" /></p>
+        <p><input type="submit" name="upload_all" value="Upload" /></p>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .move {
+      margin-left: 220px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .list {
+      clear: both;
+      margin-top: 0px;
+      width: 400px;
+      height: 500px;
+      float: right;
+      border: 2px solid;
+      margin-right: 220px;
+    }
+
+    .list h2 {
+      margin-left: 10px;
+    }
+
+    .list p {
+      border: 2px solid;
+      border-radius: 10px;
+      margin: 5px 0;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 5px;
+    }
+
+    .upload {
+      border: 2px solid;
+      float: left;
+      padding: 10px;
+
+      margin-right: 10px;
+    }
+
+    .chagenode {
+      width: 70px;
+      margin-right: 10px;
+    }
+  </style>
+</body>
+
+</html>

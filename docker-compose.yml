@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  bootstrap:
+    build:
+      context: .
+      dockerfile: bootstrap.Dockerfile
+    ports:
+      - "8000:3000"
+
+  node1:
+    container_name: node1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8080" 
+
+  node2:
+    container_name: node2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8080"
+
+  node3:
+    container_name: node3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8080" 
+
+  node4:
+    container_name: node4
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8080" 
+  
