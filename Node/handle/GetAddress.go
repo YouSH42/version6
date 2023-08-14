@@ -31,8 +31,8 @@ func GetAddress() string {
 				continue
 			}
 
-			return string(ipAddr)
-			// fmt.Fprintf(w, "Interface: %s, IP: %s\n", iface.Name, ipAddr)
+			// fmt.Printf("Interface: %s, IP: %s\n", iface.Name, ipAddr)
+			return ipAddr.String()
 		}
 	}
 	return ""

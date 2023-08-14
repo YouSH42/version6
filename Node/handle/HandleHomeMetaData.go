@@ -57,22 +57,27 @@ func HandleHomeMetaData(w http.ResponseWriter, _ *http.Request, _ httprouter.Par
 	}
 	totalnodesize := 0
 	var nodeNum PageData
-	nodes := GetNodeIp()
+	nodes := GetNodeInfo()
+	nodecount := 0
 	// 받아온 사이즈 정보 저장
 	for _, node := range nodes {
+		nodecount++
 		nodeNum, _, _ = ReceiveMetadata(node.IPAddress)
 		totalnodesize = totalnodesize + nodeNum.FileSize
 	}
-	TotalSize = TotalSize / 1000
-	totalnodesize = totalnodesize / 1000
+	// TotalSize = TotalSize / 1000
+	// totalnodesize = totalnodesize / 1000
 	// NodeData에 값 할당
 	nodeData := NodeFileData{
 		NodeNumber: 0,
-		NodeCount:  0,
+		NodeCount:  nodecount,
 		FileSize:   TotalSize,
 		NodeSize:   totalnodesize,
 		FileData:   results,
 	}
+	// nodes 안에 있는 주소 값 비우는 함수
+	Clear()
+
 	tmpl := template.Must(template.ParseFiles("Node/templates/test.html"))
 	tmpl.Execute(w, nodeData)
 }

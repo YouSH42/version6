@@ -6,16 +6,21 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type NodeInfo struct {
 	IPAddress string `json:"ip"`
 }
 
-func GetNodeIp() []NodeInfo {
+func GetNodeInfo() []NodeInfo {
+	// 브로드캐스트로 주소 요청
+	SendBroadcast()
+	addr := GetAddress()
 	// HTTP GET 요청을 보낼 URL
 	// bootstrap의 ip주소는 고정이어야 함
-	url := "http://bootstrap:3000/nodes"
+	url := "http://" + addr + ":2000/getaddr"
+	time.Sleep(time.Second * 2)
 
 	var nodes []NodeInfo
 

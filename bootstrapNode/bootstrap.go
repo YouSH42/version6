@@ -17,7 +17,7 @@ type NodeInfo struct {
 
 var nodes []NodeInfo
 
-func GetNodesHandler(w http.ResponseWriter, r *http.Request) {
+func GetNodesHandler(w http.ResponseWriter, _ *http.Request) {
 	// 노드 정보를 JSON 형태로 반환
 	nodeData, err := json.Marshal(nodes)
 	if err != nil {
@@ -45,16 +45,13 @@ func GetNodeRegist(w http.ResponseWriter, r *http.Request) {
 	// 받아온 IP 주소를 노드 목록에 추가
 	AddNode(clientIP)
 
-	fmt.Println(clientIP)
-
-	// 응답 보내기
-	// w.WriteHeader(http.StatusOK)
-	// w.Write([]byte("New node added: " + clientIP))
+	// fmt.Println(clientIP)
+	// fmt.Println(what)
 }
 
 func main() {
-	http.HandleFunc("/nodes", GetNodesHandler)
-	http.HandleFunc("/regist", GetNodeRegist)
+	http.HandleFunc("/getaddr", GetNodesHandler) //노드 정보 주는 api
+	http.HandleFunc("/regist", GetNodeRegist)    //노드 정보 받는 api
 
 	fmt.Println("bootstrap listening... 3000")
 	http.ListenAndServe(":3000", nil)

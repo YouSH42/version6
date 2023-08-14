@@ -34,7 +34,7 @@ func HandleFileUploadAll(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 	}
 	//bootstrap이 되었든 뭐가 되었든 container의 ip와 port를 받아오는 형태로 가야함
 
-	nodes := GetNodeIp()
+	nodes := GetNodeInfo()
 
 	// 파일 저장
 	for _, node := range nodes {
@@ -45,6 +45,8 @@ func HandleFileUploadAll(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 
 	//시간 딜레이가 필요해보임
 	time.Sleep(time.Second * 2)
+	// nodes 안에 있는 주소 값 비우는 함수
+	Clear()
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }

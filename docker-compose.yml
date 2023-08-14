@@ -1,5 +1,9 @@
 version: '3.8'
 
+networks:
+  mynetwork:
+    external: true
+
 services:
   bootstrap:
     build:
@@ -7,6 +11,8 @@ services:
       dockerfile: bootstrap.Dockerfile
     ports:
       - "8000:3000"
+    networks:
+      - mynetwork
 
   node1:
     container_name: node1
@@ -15,6 +21,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8001:8080" 
+    networks:
+      - mynetwork
 
   node2:
     container_name: node2
@@ -23,6 +31,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8002:8080"
+    networks:
+      - mynetwork
 
   node3:
     container_name: node3
@@ -31,6 +41,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8003:8080" 
+    networks:
+      - mynetwork
 
   node4:
     container_name: node4
@@ -39,4 +51,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8004:8080" 
+    networks:
+      - mynetwork
   

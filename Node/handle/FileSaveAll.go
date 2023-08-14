@@ -46,7 +46,7 @@ func FileSaveAll(uploadFile multipart.File, metadata MetaData, containerName str
 	writer.WriteField("metadata", string(jsonData))
 
 	// HTTP POST 요청을 보낼 URL -----1
-	url := "http://" + containerName + ":2000/metadata"
+	url := "http://" + containerName + ":2000/filesave"
 	// Content-Type 설정
 	writer.Close()
 	req, err := http.NewRequest("POST", url, body)
