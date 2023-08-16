@@ -4,10 +4,21 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 )
 
 func SendBroadcast() {
-	conn, err := net.Dial("udp", "172.18.255.255:8000") // 브로드캐스트 주소와 포트
+	netip := GetAddress()
+	parts := strings.Split(netip, ".")
+	prefix := ""
+	if len(parts) >= 2 {
+		prefix = parts[0] + "." + parts[1] + "."
+		// fmt.Println(prefix) // 출력: "172.18."
+	}
+
+	url := prefix + "255.255:8000"
+	// fmt.Println(url)
+	conn, err := net.Dial("udp", url) // 브로드캐스트 주소와 포트
 
 	if err != nil {
 		fmt.Println("Error:", err)

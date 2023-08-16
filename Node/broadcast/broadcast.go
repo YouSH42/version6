@@ -22,7 +22,7 @@ func Broadcast() {
 	buffer := make([]byte, 1024)
 	for {
 		// 클라이언트 메시지 수신 대기
-		_, addr, err := conn.ReadFromUDP(buffer)
+		n, addr, err := conn.ReadFromUDP(buffer)
 		if err != nil {
 			fmt.Println("Error reading message:", err)
 			continue
@@ -34,6 +34,6 @@ func Broadcast() {
 		// fmt.Println("current address: ", myaddr, "from ", fromaddr)
 		hr.SendMyAddrToNode(myaddr, fromaddr)
 		// 메세지가 잘 도착했는지 확인
-		// fmt.Printf("Received %s from %s\n", string(buffer[:n]), addr)
+		fmt.Printf("Received %s from %s\n", string(buffer[:n]), addr)
 	}
 }

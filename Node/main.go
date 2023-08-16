@@ -18,7 +18,7 @@ func main() {
 
 	router := httprouter.New()
 	router.GET("/", hr.HandleHomeMetaData)
-	// router.GET("/test", hr.HandleBroadcast)
+	// router.GET("/test", test)
 	router.POST("/upload/one", hr.HandleFileUpload)
 	router.POST("/upload/all", hr.HandleFileUploadAll)
 
